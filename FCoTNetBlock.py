@@ -7,7 +7,7 @@ from torch.nn.modules.activation import ReLU
 from torch.nn.modules.batchnorm import BatchNorm2d
 from torch.nn import functional as F
 
-class CoTNetLayer(nn.Module):
+class FCoTNetLayer(nn.Module):
 
     def __init__(self, dim=512, kernel_size=3):
         super().__init__()
@@ -19,29 +19,7 @@ class CoTNetLayer(nn.Module):
             nn.ReLU()
         )
 
-        class SELayer(nn.Module):
-            def __init__(self, channel, reduction=16):
-                super(SELayer, self).__init__()
-
-                self.avg_pool = nn.AdaptiveAvgPool2d(1)
-                self.fc = nn.Sequential(
-                    nn.Linear(channel, channel // 16, bias=False),
-                    nn.ReLU(),
-                    nn.Linear(channel // 16, channel, bias=False),
-                    nn.Sigmoid()
-                )
-
-            def forward(self, x):
-                
-                b, c, _, _ = x.size()
-                y = self.avg_pool(x).view(b, c)
-                y = self.fc(y).view(b, c, 1, 1)
-
-                return x * y.expand_as(x)
-
-
-
-
+        
         class In(nn.Module):
             
             def __init__(self, in_channels, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
