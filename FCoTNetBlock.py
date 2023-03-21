@@ -124,8 +124,3 @@ class CoTNetLayer(nn.Module):
 
         return x+k1+k2  
 
-if __name__ == '__main__':
-    input = torch.randn(50, 512, 7, 7)
-    cot = CoTNetLayer(dim=512, kernel_size=3)
-    output = cot(input)
-    print(output.shape)
