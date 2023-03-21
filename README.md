@@ -10,7 +10,7 @@ CUDA10.2
 CuDNN7.0
 
 # Usage Method(train with our dataset)
-The model's backbone is ResNet. In our training, we use our dataset.  
+The model's backbone is ResNet. In our training, we use our 5-fold cross-validation dataset.  
 
 ```
 # train and val
