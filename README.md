@@ -3,7 +3,7 @@
 
 # Required Environment
 Ubuntu20.04  
-GTX 1080Ti  
+GTX 2080Ti  
 Python3.7  
 PyTorch1.7.0  
 CUDA10.2  
