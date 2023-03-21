@@ -67,7 +67,7 @@ class BasicBlock(nn.Module):
         self.conv1 = conv3x3(inplanes, planes, stride)
         self.bn1 = nn.BatchNorm2d(planes)
         self.relu1 = nn.ReLU(inplace=True)
-        self.cot_layer = CoTNetLayer(dim=planes, kernel_size=3)
+        self.fcot_layer = FCoTNetLayer(dim=planes, kernel_size=3)
         self.conv2 = conv3x3(planes, planes)
         self.bn2 = nn.BatchNorm2d(planes)
         self.relu2 = nn.ReLU(inplace=True)
@@ -80,7 +80,7 @@ class BasicBlock(nn.Module):
         out = self.bn1(out)
         out = self.relu1(out)
 
-        out = self.cot_layer(out)
+        out = self.fcot_layer(out)
         out = self.bn2(out)
 
         if self.downsample is not None:
